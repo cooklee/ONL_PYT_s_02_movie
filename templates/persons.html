@@ -1,9 +1,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <h2>{{ error }}</h2>
+    <form method="post">
+        {% csrf_token %}
+        <p>
+            Imie: <input type="text" name="first_name">
+        </p>
+        <p>
+            Nazwisko: <input type="text" name="last_name">
+        </p>
+        <p>
+            <input type="submit">
+        </p>
+    </form>
+
     <ul>
-    {% for person in persons %}
-        <li>{{ person }}</li>
-    {% endfor %}
+        {% for person in persons %}
+            <li>{{ person }}</li>
+        {% endfor %}
     </ul>
 {% endblock %}
