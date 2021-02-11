@@ -21,4 +21,5 @@ from baza import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", views.index, name='index'),
+    path("persons/", views.person_function_view, name='persons'),
 ]
