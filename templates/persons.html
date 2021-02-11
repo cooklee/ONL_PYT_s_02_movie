@@ -5,10 +5,10 @@
     <form method="post">
         {% csrf_token %}
         <p>
-            Imie: <input type="text" name="first_name">
+            Imie: <input type="text" name="first_name" value="{{ person.first_name }}">
         </p>
         <p>
-            Nazwisko: <input type="text" name="last_name">
+            Nazwisko: <input type="text" name="last_name" value="{{ person.last_name }}">
         </p>
         <p>
             <input type="submit">
@@ -17,7 +17,7 @@
 
     <ul>
         {% for person in persons %}
-            <li>{{ person }}</li>
+            <li><a href="{% url 'edit_person' person.id %}"> {{ person }}</a></li>
         {% endfor %}
     </ul>
 {% endblock %}
