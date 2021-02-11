@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("", views.index, name='index'),
     path("persons/", views.person_function_view, name='persons'),
+    path("persons_by_class/", views.PersonView.as_view(), name='persons_by_class'),
 ]
