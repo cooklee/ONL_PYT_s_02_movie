@@ -17,7 +17,10 @@
 
     <ul>
         {% for person in persons %}
-            <li><a href="{% url 'edit_person' person.id %}"> {{ person }}</a></li>
+            <li>
+                <a href="{% url 'edit_person' person.id %}"> {{ person }}</a>
+                <a href="{% url 'delete_person' person.id %}">Usuń</a>
+            </li>
         {% endfor %}
     </ul>
 {% endblock %}

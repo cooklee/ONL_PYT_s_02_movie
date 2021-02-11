@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+    <p>Czy jesteś pewien że chesz usunąć Osobe {{ person }} ?</p>
+    <form method="post">
+    {% csrf_token %}
+        <p><input type="submit" name="submit" value="ok">
+        <input type="submit" name="submit" value="Nope"></p>
+    </form>
+{% endblock %}

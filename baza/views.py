@@ -60,4 +60,22 @@ class PersonEditView(View):
         return redirect('persons')
 
 
+class DeletePersonView(View):
+
+    def get(self, request, id):
+        person = Person.objects.get(pk=id)
+        return render(request, 'persons_delete.html', {'person': person})
+
+    def post(self, request, id):
+        odp = request.POST.get('submit')
+        if odp == "ok":
+            person = Person.objects.get(pk=id)
+            person.delete()
+        return redirect('persons')
+
+
+
+
+
+
 
