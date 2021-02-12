@@ -118,6 +118,19 @@ class AddRoleView(View):
         return redirect('edit_person', person.id)
 
 
+class SessionView(View):
+
+    def get(self, request):
+        session = request.session
+        return render(request, 'session.html', {'session':session})
+
+    def post(self, request):
+        key = request.POST['key']
+        value = request.POST['value']
+        request.session[key] = value
+        return redirect('session')
+
+
 
 
 

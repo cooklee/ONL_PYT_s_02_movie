@@ -1,0 +1,10 @@
+<form method="post">
+    {% csrf_token %}
+    <p>kucz: <input type="text" name="key"> </p>
+    <p>wartosc: <input type="text" name="value"> </p>
+    <input type="submit">
+</form>
+
+{% for key, value in session.items %}
+    <p>session[{{ key }}]={{ value }}</p>
+{% endfor %}
