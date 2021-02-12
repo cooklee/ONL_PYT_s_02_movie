@@ -48,7 +48,8 @@ class PersonEditView(View):
 
     def get(self, request, id):
         person = Person.objects.get(pk=id)
-        return render(request, 'persons.html', {'person': person})
+        movies = Movie.objects.all()
+        return render(request, 'persons.html', {'person': person, 'movies':movies})
 
     def post(self, request, id):
         person = Person.objects.get(pk=id)
@@ -106,6 +107,15 @@ class RoleView(View):
         role = request.POST['role']
         Role.objects.create(movie=movie, person=actor, role=role)
         return redirect('role')
+
+class AddRoleView(View):
+
+    def post(self, request):
+        person = Person.objects.get(id = request.POST['person'])
+        movie = Movie.objects.get(id=request.POST['movie'])
+        role = request.POST['role']
+        Role.objects.create(movie=movie, person=person, role=role)
+        return redirect('edit_person', person.id)
 
 
 

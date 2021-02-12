@@ -23,4 +23,17 @@
             </li>
         {% endfor %}
     </ul>
+    {% if person %}
+        <form method="post" action="{% url 'add_role' %}">
+            {% csrf_token %}
+            <input type="text" name="role">
+            <select name="movie">
+                {% for movie in movies %}
+                    <option value="{{ movie.id }}">{{ movie.title }}</option>
+                {% endfor %}
+            </select>
+            <input type="hidden" name="person" value="{{ person.id }}">
+            <input type="submit">
+        </form>
+    {% endif %}
 {% endblock %}
