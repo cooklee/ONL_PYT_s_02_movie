@@ -131,6 +131,19 @@ class SessionView(View):
         return redirect('session')
 
 
+class CookieeView(View):
+
+    def get(self, request):
+        cookiee = request.COOKIES
+        return render(request, 'cookie.html', {'cookiee':cookiee})
+
+    def post(self, request):
+        key = request.POST['key']
+        value = request.POST['value']
+        httpresponse = redirect('cookie')
+        httpresponse.set_cookie(key, value)
+        return httpresponse
+
 
 
 

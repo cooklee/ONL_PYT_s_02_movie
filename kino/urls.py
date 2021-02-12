@@ -29,4 +29,5 @@ urlpatterns = [
     path("edit_person/<int:id>/", views.PersonEditView.as_view(), name='edit_person'),
     path("delete_person/<int:id>/", views.DeletePersonView.as_view(), name='delete_person'),
     path("session/", views.SessionView.as_view(), name='session'),
+    path("cookiee/", views.CookieeView.as_view(), name='cookie'),
 ]
