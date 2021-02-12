@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form method="post">
+    {% csrf_token %}
+        <p>Tytuł: <input type="text" name="title"></p>
+        <p>Rok: <input type="number" name="year"></p>
+        <p>reżyser:
+            <select name="director">
+                {% for person in persons %}
+                <option value="{{ person.id }}">{{ person }}</option>
+                {% endfor %}
+            </select>
+        </p>
+        <p>scenarzysta:
+            <select name="screenplay">
+                {% for person in persons %}
+                    <option value="{{ person.id }}">{{ person }}</option>
+                {% endfor %}
+            </select>
+        </p>
+        <p>aktorzy:
+                <ul>
+                {% for person in persons %}
+                    <li> <input type="checkbox" value="{{ person.id }}" name="actors"> {{ person }}</li>
+                {% endfor %}
+                </ul>
+
+        </p>
+        <input type="submit">
+    </form>
+    <table>
+    <tr>
+        <th>Tytuł</th><th>Rok Produkcji</th><th> Reżyseria</th><th>scenariusz</th></tr>
+        {% for movie in movies %}
+            <tr><td> {{ movie.title }}</td>
+                <td> {{ movie.year }}</td>
+                <td> {{ movie.director }}</td>
+                <td> {{ movie.screenplay }}</td></tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}
