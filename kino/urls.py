@@ -23,6 +23,7 @@ urlpatterns = [
     path("", views.index, name='index'),
     path("persons/", views.person_function_view, name='persons'),
     path("movie/", views.MovieView.as_view(), name='movie'),
+    path("role/", views.RoleView.as_view(), name='role'),
     path("persons_by_class/", views.PersonView.as_view(), name='persons_by_class'),
     path("edit_person/<int:id>/", views.PersonEditView.as_view(), name='edit_person'),
     path("delete_person/<int:id>/", views.DeletePersonView.as_view(), name='delete_person'),

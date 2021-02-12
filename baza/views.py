@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 # Create your views here.
 from django.views import View
 
-from baza.models import Person, Movie
+from baza.models import Person, Movie, Role
 
 
 def index(request):
@@ -88,8 +88,25 @@ class MovieView(View):
 
         screenplay = Person.objects.get(pk=screenplay_id)
         director = Person.objects.get(pk=director_id)
-        Movie.objects.create(title=title, year=year, screenplay=screenplay, director=director)
+        m = Movie.objects.create(title=title, year=year, screenplay=screenplay, director=director)
+        m.actors.set([1,2,3])
         return redirect('movie')
+
+
+class RoleView(View):
+
+    def get(self, request):
+        persons = Person.objects.all()
+        movies = Movie.objects.all()
+        return render(request, "role.html", {'persons':persons, 'movies':movies})
+
+    def post(self, request):
+        movie = Movie.objects.get(id=request.POST['movie'])
+        actor = Person.objects.get(id=request.POST['actor'])
+        role = request.POST['role']
+        Role.objects.create(movie=movie, person=actor, role=role)
+        return redirect('role')
+
 
 
 

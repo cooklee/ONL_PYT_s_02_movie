@@ -31,12 +31,19 @@
     </form>
     <table>
     <tr>
-        <th>Tytuł</th><th>Rok Produkcji</th><th> Reżyseria</th><th>scenariusz</th></tr>
+        <th>Tytuł</th><th>Rok Produkcji</th><th> Reżyseria</th><th>scenariusz</th> <th>Wystąpili</th></tr>
         {% for movie in movies %}
             <tr><td> {{ movie.title }}</td>
                 <td> {{ movie.year }}</td>
                 <td> {{ movie.director }}</td>
-                <td> {{ movie.screenplay }}</td></tr>
+                <td> {{ movie.screenplay }}</td>
+                <td><ul>
+                    {% for role in movie.role_set.all %}
+                        <li> {{ role.person }} jako {{ role.role }}</li>
+                    {% endfor %}
+                </ul>
+                </td>
+            </tr>
         {% endfor %}
     </table>
 

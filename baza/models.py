@@ -16,6 +16,7 @@ class Movie(models.Model):
     actors = models.ManyToManyField(Person, related_name='roles', through='Role')
 
 
+
 class Role(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     person = models.ForeignKey(Person, on_delete=models.PROTECT)
